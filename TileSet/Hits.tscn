@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Art/Tiles/hit4.png" type="Texture" id=1]
+[ext_resource path="res://Art/Tiles/hit3.png" type="Texture" id=2]
+[ext_resource path="res://Art/Tiles/hit1.png" type="Texture" id=3]
+[ext_resource path="res://Art/Tiles/hit2.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="Tiles" type="Node2D"]
+
+[node name="hit1" type="Sprite" parent="."]
+position = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hit1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit1/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="hit2" type="Sprite" parent="."]
+position = Vector2( 14, 5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hit2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit2/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="hit3" type="Sprite" parent="."]
+position = Vector2( 23, 5 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hit3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit3/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="hit4" type="Sprite" parent="."]
+position = Vector2( 32, 5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hit4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit4/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )

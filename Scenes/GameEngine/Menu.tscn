@@ -1,0 +1,237 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 140.0 ]
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -71.2
+margin_top = -34.0
+margin_right = 71.2
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="MainMenu"]
+margin_right = 142.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -162, 126 )
+text = "Play"
+
+[node name="Options" type="Button" parent="MainMenu"]
+margin_top = 24.0
+margin_right = 142.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( -162, 126 )
+text = "Options"
+
+[node name="Quit" type="Button" parent="MainMenu"]
+margin_top = 48.0
+margin_right = 142.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( -162, 126 )
+text = "Exit"
+
+[node name="Worlds" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -270.0
+margin_right = 137.5
+margin_bottom = 270.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Worlds"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -259.0
+margin_right = 137.5
+margin_bottom = 178.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorldContainer" type="VBoxContainer" parent="Worlds/ScrollContainer"]
+margin_right = 275.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NewWorld" type="Button" parent="Worlds"]
+anchor_top = 0.833
+anchor_right = 1.0
+anchor_bottom = 0.889
+margin_top = 10.18
+margin_bottom = 9.93997
+text = "New World"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete|Back" type="HBoxContainer" parent="Worlds"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -137.5
+margin_top = -40.0
+margin_right = 137.5
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="Worlds/Delete|Back"]
+margin_right = 135.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Delete"
+
+[node name="Back" type="Button" parent="Worlds/Delete|Back"]
+margin_left = 139.0
+margin_right = 275.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewWorld" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -186.0
+margin_top = -270.0
+margin_right = 186.0
+margin_bottom = 270.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="VBoxContainer" parent="NewWorld"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -101.0
+margin_top = -71.0
+margin_right = 101.0
+margin_bottom = 71.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="HBoxContainer" parent="NewWorld/Items"]
+margin_right = 202.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="name" type="Label" parent="NewWorld/Items/Name"]
+margin_top = 5.0
+margin_right = 50.0
+margin_bottom = 19.0
+text = "Name:  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nameInput" type="LineEdit" parent="NewWorld/Items/Name"]
+margin_left = 54.0
+margin_right = 202.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+context_menu_enabled = false
+placeholder_text = "default: NewWorld"
+
+[node name="Length" type="HBoxContainer" parent="NewWorld/Items"]
+margin_top = 56.0
+margin_right = 202.0
+margin_bottom = 80.0
+alignment = 1
+
+[node name="length" type="Label" parent="NewWorld/Items/Length"]
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 19.0
+text = "Length: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lenthInput" type="LineEdit" parent="NewWorld/Items/Length"]
+margin_left = 55.0
+margin_right = 202.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "200"
+context_menu_enabled = false
+placeholder_text = "min: 100"
+
+[node name="Height" type="HBoxContainer" parent="NewWorld/Items"]
+margin_top = 28.0
+margin_right = 202.0
+margin_bottom = 52.0
+alignment = 1
+
+[node name="height" type="Label" parent="NewWorld/Items/Height"]
+margin_top = 5.0
+margin_right = 50.0
+margin_bottom = 19.0
+text = "Height: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="heightInput" type="LineEdit" parent="NewWorld/Items/Height"]
+margin_left = 54.0
+margin_right = 202.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "50"
+context_menu_enabled = false
+placeholder_text = "min: 50"
+
+[node name="Generate" type="Button" parent="NewWorld/Items"]
+margin_top = 84.0
+margin_right = 202.0
+margin_bottom = 104.0
+text = "Generate World"
+
+[node name="BackNW" type="Button" parent="NewWorld/Items"]
+margin_top = 108.0
+margin_right = 202.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+text = "Back"
+
+[connection signal="pressed" from="MainMenu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="MainMenu/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Worlds/NewWorld" to="." method="_on_NewWorld_pressed"]
+[connection signal="toggled" from="Worlds/Delete|Back/Delete" to="." method="_on_Delete_toggled"]
+[connection signal="pressed" from="Worlds/Delete|Back/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="NewWorld/Items/Generate" to="." method="_on_Generate_pressed"]
+[connection signal="pressed" from="NewWorld/Items/BackNW" to="." method="_on_BackNW_pressed"]
