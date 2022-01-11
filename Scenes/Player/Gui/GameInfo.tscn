@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GameInfo.gd" type="Script" id=1]
+
+[node name="GameInfo" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Information" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.7, 0.7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="Information"]
+margin_right = 93.0
+margin_bottom = 14.0
+text = "FPS:"
+
+[node name="Position" type="Label" parent="Information"]
+margin_top = 18.0
+margin_right = 93.0
+margin_bottom = 32.0
+text = "Position:"
+
+[node name="SelectedCell" type="Label" parent="Information"]
+margin_top = 36.0
+margin_right = 93.0
+margin_bottom = 50.0
+text = "Selected cell:"
+
+[node name="SelectedItem" type="Label" parent="Information"]
+margin_top = 54.0
+margin_right = 93.0
+margin_bottom = 68.0
+text = "Selected item:"
+
+[node name="HoldingItem" type="Label" parent="Information"]
+margin_top = 72.0
+margin_right = 93.0
+margin_bottom = 86.0
+text = "Holding item:"

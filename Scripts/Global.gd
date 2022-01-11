@@ -1,10 +1,10 @@
 extends Node
 
 #save path
-var path = "res://saves/"
+var savePath = "res://saves/"
+var menuPath = "res://Scenes/GameEngine/Menu.tscn"
 
 var current_scene = null
-
 var world = null
 
 var blocks = {
@@ -13,12 +13,15 @@ var blocks = {
 	"stone": 2 
 }
 
-#singleton / global scripts - https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html
+var item_data: Dictionary
 
+#singleton / global scripts - https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
+	item_data = LoadData("res://Data/ItemData.json")
+
 func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 
@@ -49,9 +52,11 @@ func setWorld(path: String):
 	#path.erase(path.length() - extensionLenght, extensionLenght)
 	#print(": ", path)
 
-"""func setWorldVar(n, h, l):
+func LoadData(filePath):
+	var json_data
+	var file_data = File.new()
 	
-	NAME = n
-	HEIGHT = h
-	LENGTH = l"""
-
+	file_data.open(filePath, File.READ)
+	json_data = JSON.parse(file_data.get_as_text())
+	file_data.close()
+	return json_data.result

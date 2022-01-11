@@ -5,7 +5,6 @@ onready var game_save_class = preload("res://Scripts/Save/game_save.gd")
 var extensionLenght = 5
 
 onready var worldContainer = $Worlds/ScrollContainer/WorldContainer
-onready var confirm = $Worlds/deleteConfirmation
 
 onready var saves = list_files_in_directory("res://saves")
 
@@ -30,6 +29,13 @@ func reloadSaves():
 			var button = Button.new()
 			button.text = save
 			button.connect("pressed", self, "_on_world_pressed", [button.text])
+
+			#set the font
+			var dynamic_font = DynamicFont.new()
+			dynamic_font.font_data = load("res://Art/Fonts/m5x7.ttf")
+			dynamic_font.size = 32
+			button.set("custom_fonts/font", dynamic_font)
+
 			worldContainer.add_child(button)
 
 func list_files_in_directory(path):
@@ -77,13 +83,13 @@ func _on_world_pressed(name: String):
 		var popup = ConfirmationDialog.new()
 		popup.window_title = "Are you sure to delete the save?"
 		popup.dialog_text = "Save: " + name
-		popup.connect("confirmed", self, "_on_deleteConfirmation_confirmed", [completePath, popup])
+		popup.connect("confirmed", self, "_on_delete_confirmed", [completePath, popup])
 		popup.rect_position = Vector2(436, 241)
 
 		$Worlds.add_child(popup)
 		popup.show()
 
-func _on_deleteConfirmation_confirmed(path, popup):
+func _on_delete_confirmed(path, popup):
 	#remove the popup
 	popup.queue_free()
 
@@ -185,8 +191,8 @@ func generate_world(name: String, max_x: int, max_y: int):
 	print(new_save.player_pos)
 	new_save.tilemap_cells = Map
 
-	print(Global.path + name + ".tres")
-	ResourceSaver.save(Global.path + name + ".tres", new_save)
+	print(Global.savePath + name + ".tres")
+	ResourceSaver.save(Global.savePath + name + ".tres", new_save)
 
 func generate_id(noise_level: float):
 	if(noise_level <= -0.3): # value when the block wont show else it will show the block

@@ -27,8 +27,8 @@ func save_world():
 	new_save.length = old_save_data.length
 
 	var dir = Directory.new()
-	if not dir.dir_exists(Global.path):
-		dir.make_dir_recursive(Global.path)
+	if not dir.dir_exists(Global.savePath):
+		dir.make_dir_recursive(Global.savePath)
 
 	#!===================================================
 	#var world_save = load(Global.world)
@@ -51,7 +51,6 @@ func save_world():
 	return ResourceSaver.save(Global.world, new_save)
 
 func load_world(path):
-	print("load")
 	var dir = Directory.new()
 	if not dir.file_exists(path):
 		return false
@@ -73,6 +72,3 @@ func load_world(path):
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("save"):
 		save_world()
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		Global.goto_scene("res://Scenes/Menu.tscn")

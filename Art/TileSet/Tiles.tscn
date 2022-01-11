@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Art/Items/Blocks/grass.png" type="Texture" id=1]
+[ext_resource path="res://Art/Items/Blocks/mud.png" type="Texture" id=2]
+[ext_resource path="res://Art/Tiles/mud3.png" type="Texture" id=3]
+[ext_resource path="res://Art/Tiles/mud4.png" type="Texture" id=4]
+[ext_resource path="res://Art/Items/Blocks/stone.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="Tiles" type="Node2D"]
+
+[node name="mud" type="Sprite" parent="."]
+position = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="mud"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mud/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="grass" type="Sprite" parent="."]
+position = Vector2( 14, 5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="stone" type="Sprite" parent="."]
+position = Vector2( 23, 5 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="stone"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="mud3" type="Sprite" parent="."]
+position = Vector2( 32, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="mud3"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mud3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="mud4" type="Sprite" parent="."]
+position = Vector2( 41, 5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="mud4"]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mud4/StaticBody2D"]
+shape = SubResource( 1 )

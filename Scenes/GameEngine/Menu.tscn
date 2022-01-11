@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Art/Fonts/m5x7.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -27,22 +42,25 @@ __meta__ = {
 
 [node name="Start" type="Button" parent="MainMenu"]
 margin_right = 142.0
-margin_bottom = 20.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( -162, 126 )
+custom_fonts/font = SubResource( 5 )
 text = "Play"
 
 [node name="Options" type="Button" parent="MainMenu"]
-margin_top = 24.0
-margin_right = 142.0
-margin_bottom = 44.0
-rect_pivot_offset = Vector2( -162, 126 )
-text = "Options"
-
-[node name="Quit" type="Button" parent="MainMenu"]
-margin_top = 48.0
+margin_top = 36.0
 margin_right = 142.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( -162, 126 )
+custom_fonts/font = SubResource( 5 )
+text = "Options"
+
+[node name="Quit" type="Button" parent="MainMenu"]
+margin_top = 72.0
+margin_right = 142.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( -162, 126 )
+custom_fonts/font = SubResource( 5 )
 text = "Exit"
 
 [node name="Worlds" type="Control" parent="."]
@@ -82,6 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 0.889
 margin_top = 10.18
 margin_bottom = 9.93997
+custom_fonts/font = SubResource( 2 )
 text = "New World"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,6 +123,7 @@ __meta__ = {
 margin_right = 135.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
 toggle_mode = true
 text = "Delete"
 
@@ -112,6 +132,7 @@ margin_left = 139.0
 margin_right = 275.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -146,86 +167,100 @@ __meta__ = {
 
 [node name="Name" type="HBoxContainer" parent="NewWorld/Items"]
 margin_right = 202.0
-margin_bottom = 24.0
+margin_bottom = 27.0
 alignment = 1
 
 [node name="name" type="Label" parent="NewWorld/Items/Name"]
 margin_top = 5.0
-margin_right = 50.0
-margin_bottom = 19.0
-text = "Name:  "
+margin_right = 55.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 3 )
+text = "Name:   "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="nameInput" type="LineEdit" parent="NewWorld/Items/Name"]
-margin_left = 54.0
+margin_left = 59.0
 margin_right = 202.0
-margin_bottom = 24.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
 context_menu_enabled = false
 placeholder_text = "default: NewWorld"
 
 [node name="Length" type="HBoxContainer" parent="NewWorld/Items"]
-margin_top = 56.0
+margin_top = 31.0
 margin_right = 202.0
-margin_bottom = 80.0
+margin_bottom = 58.0
 alignment = 1
 
 [node name="length" type="Label" parent="NewWorld/Items/Length"]
 margin_top = 5.0
-margin_right = 51.0
-margin_bottom = 19.0
+margin_right = 99.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
 text = "Length: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="lenthInput" type="LineEdit" parent="NewWorld/Items/Length"]
-margin_left = 55.0
+margin_left = 103.0
 margin_right = 202.0
-margin_bottom = 24.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
-text = "200"
+custom_fonts/font = SubResource( 3 )
 context_menu_enabled = false
 placeholder_text = "min: 100"
 
 [node name="Height" type="HBoxContainer" parent="NewWorld/Items"]
-margin_top = 28.0
+margin_top = 62.0
 margin_right = 202.0
-margin_bottom = 52.0
+margin_bottom = 89.0
 alignment = 1
 
 [node name="height" type="Label" parent="NewWorld/Items/Height"]
 margin_top = 5.0
-margin_right = 50.0
-margin_bottom = 19.0
+margin_right = 99.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
 text = "Height: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="heightInput" type="LineEdit" parent="NewWorld/Items/Height"]
-margin_left = 54.0
+margin_left = 103.0
 margin_right = 202.0
-margin_bottom = 24.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
-text = "50"
+custom_fonts/font = SubResource( 3 )
 context_menu_enabled = false
 placeholder_text = "min: 50"
 
 [node name="Generate" type="Button" parent="NewWorld/Items"]
-margin_top = 84.0
+margin_top = 93.0
 margin_right = 202.0
-margin_bottom = 104.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 3 )
 text = "Generate World"
 
 [node name="BackNW" type="Button" parent="NewWorld/Items"]
-margin_top = 108.0
+margin_top = 120.0
 margin_right = 202.0
-margin_bottom = 128.0
+margin_bottom = 143.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
 text = "Back"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_right = 88.0
+margin_bottom = 58.0
+theme = SubResource( 4 )
+window_title = "Pozor!"
 
 [connection signal="pressed" from="MainMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="MainMenu/Options" to="." method="_on_Options_pressed"]
