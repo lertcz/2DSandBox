@@ -7,13 +7,8 @@ var menuPath = "res://Scenes/GameEngine/Menu.tscn"
 var current_scene = null
 var world = null
 
-var blocks = {
-	"mud": 0,
-	"grass": 1,
-	"stone": 2 
-}
-
 var item_data: Dictionary
+var blockIdDrop: Array
 
 #singleton / global scripts - https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html
 func _ready():
@@ -21,6 +16,9 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	item_data = LoadData("res://Data/ItemData.json")
+	
+	for item in item_data["Blocks"]:
+		blockIdDrop.append(item)
 
 func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)

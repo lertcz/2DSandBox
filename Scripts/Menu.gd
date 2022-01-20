@@ -165,21 +165,22 @@ func generate_world(name: String, max_x: int, max_y: int):
 	
 	for x in max_x:
 		var noise_height = int(noise.get_noise_1d(x) * 4.5) + offset # -10 to get the map lower
-		Map[x][noise_height] = Global.blocks.grass
+		print(Global.item_data["Blocks"]["grass"]["ID"])
+		Map[x][noise_height] = Global.item_data["Blocks"]["grass"]["ID"]
 		#set_cell(x, noise_height, Blocks.blocks.grass) # position, height, mud
 
 		var rand_limit = int(rand_range(noise_height+4, noise_height+6)) # dirt will be 4 - 6 block high
 		for depth in range(noise_height+1, rand_limit):
-			Map[x][depth] = Global.blocks.mud
+			Map[x][depth] = Global.item_data["Blocks"]["mud"]["ID"]
 
 		for depth in range(rand_limit, max_y):
 			var tile_id = generate_id(noise.get_noise_2d(x, depth))
 			
 			if(depth > rand_limit+3):
 				if(tile_id != -1):
-					Map[x][depth] = Global.blocks.stone
+					Map[x][depth] = Global.item_data["Blocks"]["stone"]["ID"]
 			else:
-				Map[x][depth] = Global.blocks.stone
+				Map[x][depth] = Global.item_data["Blocks"]["stone"]["ID"]
 				#set_cell(x, depth, blocks.stone)
 	
 	var new_save = game_save_class.new()
@@ -188,7 +189,10 @@ func generate_world(name: String, max_x: int, max_y: int):
 	new_save.length = max_x
 	#spawn in middle
 	new_save.player_pos = Vector2((max_x*8)/2, 0) #mult by tile size
-	print(new_save.player_pos)
+	new_save.player_inventory = {
+		0: ["CopperPickaxe", 1],
+		1: ["CopperAxe", 1]
+	}
 	new_save.tilemap_cells = Map
 
 	print(Global.savePath + name + ".tres")

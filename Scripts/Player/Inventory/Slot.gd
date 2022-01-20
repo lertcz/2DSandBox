@@ -17,14 +17,12 @@ func initialize_item(itemName, itemQuantity):
 func pickFromSlot():
 	remove_child(item)
 	var inventoryNode = find_parent("Inventory")
-	item.set_name("Item")
 	inventoryNode.add_child(item)
 	item = null
 
 #scrapped
 func pickOneFromSLot():
 	var inventoryNode = find_parent("Inventory")
-	item.set_name("Item")
 	inventoryNode.add_child(item)
 
 func putIntoSlot(new_item):
@@ -33,3 +31,7 @@ func putIntoSlot(new_item):
 	var inventoryNode = find_parent("Inventory")
 	inventoryNode.remove_child(item)
 	add_child(item)
+
+func removeItem():
+	remove_child(item)
+	item = null

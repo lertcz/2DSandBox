@@ -6,21 +6,23 @@ const ItemClass = preload("res://Scripts/Player/Inventory/Item.gd")
 const HOTBAR_SIZE = 5
 const INVENTORY_SLOTS = 15
 
-var inventory = {
-	0: ["CopperPickaxe", 1], # --> itemIndex: [ItemName, item quantity]
-	1: ["CopperAxe", 1],
-	2: ["grass", 12],
-	3: ["mud", 12],
-	4: ["stone", 15]
-}
+var inventory
+#var inventory = {
+#	0: ["CopperPickaxe", 1], # --> itemIndex: [ItemName, item quantity]
+#}
 
 func add_item(itemName, itemQuantity):
 	for item in inventory:
 		if inventory[item][0] == itemName:
-			#TODO check if slot is full
-			inventory[item][1] += itemQuantity
-			return
-	
+			var stack_size = int(Global.item_data[itemName]["StackSize"])
+			var able_to_add = stack_size - inventory[item][1]
+			if able_to_add >= itemQuantity:
+				inventory[item][1] += itemQuantity
+				return
+			else:
+				inventory[item][1] += able_to_add
+				itemQuantity -= able_to_add
+
 	#item dont exist yet
 	#add to inventory first
 	for i in range(HOTBAR_SIZE, INVENTORY_SLOTS + HOTBAR_SIZE):

@@ -25,7 +25,7 @@ func setLables():
 
 func _physics_process(delta):
 	
-	if inventory.currentSlotItem:
+	if false:#PlayerInventory.:
 		selected = inventory.currentSlotItem.item_name
 	else:
 		selected = "nothing"

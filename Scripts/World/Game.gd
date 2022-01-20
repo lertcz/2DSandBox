@@ -2,7 +2,7 @@ extends Node2D
 
 export(Script) var game_save_class
 
-var save_vars = ["name", "height", "length", "player_pos", "tilemap_cells"]
+var save_vars = ["name", "height", "length", "player_pos", "player_inventory", "tilemap_cells"]
 
 onready var tileMap = $TileMap
 
@@ -60,6 +60,7 @@ func load_world(path):
 		return false
 
 	$Player.position = world_save.player_pos
+	PlayerInventory.inventory = world_save.player_inventory
 
 	#map is loaded verticaly (leftTop -> down)
 	for x in range(world_save.length): #length

@@ -4,53 +4,51 @@
         "StackSize": 99,
         "Description": "123"
     },
-
-    "CopperSword": {
-        "ItemClass": "Tools",
-        "ItemCategory": "Sword",
-        "StackSize": 1,
-        "ItemAttack": 5,
-        "ItemSpeed": 1,
-        "Description": "Just a copper sword"
-    },
-    "CopperPickaxe": {
-        "ItemClass": "Tools",
-        "ItemCategory": "Pickaxe",
-        "StackSize": 1,
-        "ItemAttack": 2,
-        "ItemDamage": 1,
-        "ItemSpeed": 1.5,
-        "Description": "Just a copper pickaxe"
-    },
-    "CopperAxe": {
-        "ItemClass": "Tools",
-        "ItemCategory": "Axe",
-        "StackSize": 1,
-        "ItemAttack": 3,
-        "ItemDamage": 1,
-        "ItemSpeed": 1.5,
-        "Description": "Just a copper axe"
+    "Tools": {
+        "CopperSword": {
+            "ItemCategory": "Sword",
+            "StackSize": 1,
+            "ItemAttack": 5,
+            "ItemSpeed": 1,
+            "Description": "Just a copper sword"
+        },
+        "CopperPickaxe": {
+            "ItemCategory": "Pickaxe",
+            "StackSize": 1,
+            "ItemAttack": 2,
+            "ItemDamage": 1,
+            "ItemSpeed": 1.5,
+            "Description": "Just a copper pickaxe"
+        },
+        "CopperAxe": {
+            "ItemCategory": "Axe",
+            "StackSize": 1,
+            "ItemAttack": 3,
+            "ItemDamage": 1,
+            "ItemSpeed": 1.5,
+            "Description": "Just a copper axe"
+        }
     },
     
-    "mud": {
-        "ItemClass": "Blocks",
-        "ItemCategory": "Block",
-        "StackSize": 99,
-        "ID": 0,
-        "Description": "Slippery mud"
-    },
-    "grass": {
-        "ItemClass": "Blocks",
-        "ItemCategory": "Block",
-        "StackSize": 99,
-        "ID": 1,
-        "Description": "Green grass"
-    },
-    "stone": {
-        "ItemClass": "Blocks",
-        "ItemCategory": "Block",
-        "StackSize": 99,
-        "ID": 2,
-        "Description": "Hard stone"
+    "Blocks": {
+        "mud": {
+            "ItemCategory": "Block",
+            "StackSize": 99,
+            "ID": 0,
+            "Description": "Slippery mud"
+        },
+        "grass": {
+            "ItemCategory": "Block",
+            "StackSize": 99,
+            "ID": 1,
+            "Description": "Green grass"
+        },
+        "stone": {
+            "ItemCategory": "Block",
+            "StackSize": 99,
+            "ID": 2,
+            "Description": "Hard stone"
+        }
     }
+    
 }

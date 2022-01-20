@@ -8,6 +8,7 @@ var holding_item = null
 var hotbarSlotCount
 var currentSlot = 0
 var currentSlotItem
+var slots
 
 var playerNode
 var itemTexture
@@ -18,30 +19,27 @@ func _ready():
 	playerNode = find_parent("Player")
 	
 	# get the lenght of hotbar
-	hotbarSlotCount = inventory_hotbar.get_child_count()
-	moveSelector()
+	hotbarSlotCount = inventory_hotbar.get_child_count() - 1
 	
-	var slots = inventory_hotbar.get_children() + inventory_slots.get_children()
+	slots = inventory_hotbar.get_children() + inventory_slots.get_children()
 	for i in range(len(slots)):
 		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
 		slots[i].slot_index = i
+	
 	initialize_inventory()
+	moveSelector()
+	holdingItemTexture(slots[0].item)
 
 func initialize_inventory():
 	var slots = inventory_hotbar.get_children() + inventory_slots.get_children()
 	for i in range(slots.size()):
-		if PlayerInventory.inventory.has(i):
+		if PlayerInventory.inventory and PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
 
 func moveSelector():
 	$Selector.position.x = currentSlot * 22
-	#if !holding_item:
-	#	holdingItemTexture(getCurrentSlotItem())
-
-#func getCurrentSlotItem():
-#	#able to be shown in gameinfo
-#	currentSlotItem = $Hotbar.get_children()[currentSlot].get_node_or_null("Item")
-#	return currentSlotItem
+	if !holding_item:
+		holdingItemTexture(slots[currentSlot].item)
 
 func holdingItemTexture(currentItem):
 	if currentItem: # if the player hold an item
@@ -70,7 +68,7 @@ func left_click_empty_slot(slot: SlotClass):
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
 	slot.putIntoSlot(holding_item)
 	holding_item = null
-	#holdingItemTexture(getCurrentSlotItem()) #show selected item instead
+	holdingItemTexture(slots[currentSlot].item) #show selected item instead
 
 func left_click_different_slot(event: InputEvent, slot: SlotClass):
 	PlayerInventory.remove_item(slot)
@@ -102,7 +100,7 @@ func left_click_not_holding(slot: SlotClass):
 	PlayerInventory.remove_item(slot)
 	holding_item = slot.item
 	slot.pickFromSlot()
-	#holdingItemTexture(holding_item)
+	holdingItemTexture(holding_item)
 	holding_item.global_position = get_global_mouse_position()
 
 #scraped for now | by rightclicking a stackable item add one into hand

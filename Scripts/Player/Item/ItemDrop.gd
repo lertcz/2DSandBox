@@ -3,13 +3,17 @@ extends KinematicBody2D
 const ACCELERATION = 460
 const MAX_SPEED =  225
 var velocity = Vector2.ZERO
-var item_name
+var item_name = "stone"
 
 var player = null
 var being_picked_up = false
 
 func _ready():
-	item_name = "mud"
+	#new inventory system!
+	$Sprite.texture = load("res://Art/Items/" + Global.item_data[item_name]["ItemClass"] + "/" + item_name + ".png")
+
+#func set_name_and_texture(name):
+	#$Sprite.texture = load("res://Art/Items/" + Global.item_data[name]["ItemClass"] + "/" + name + ".png")
 
 func _physics_process(delta):
 	if !being_picked_up:
@@ -21,6 +25,7 @@ func _physics_process(delta):
 			
 			var distance = global_position.distance_to(player.global_position)
 			if distance < 4:
+				#TODO fix picking up items if inv is full
 				PlayerInventory.add_item(item_name, 1)
 				queue_free()
 				player.reload_inventory()

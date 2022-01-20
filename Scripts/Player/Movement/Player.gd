@@ -60,22 +60,28 @@ func _physics_process(delta: float) -> void:
 	pullRate += GRAVITY
 
 	#using items
-	"""if inventory.currentSlotItem != null: #check if u hold an item
+	if PlayerInventory.inventory.has(inventory.currentSlot): #check if u hold an item
+		var selectedSlot = PlayerInventory.inventory[inventory.currentSlot]
 		if(Input.is_action_pressed("LMB")): # check for lmb
+			var itemName = selectedSlot[0]
 			#check if item is pickaxe
-			if Global.item_data[inventory.currentSlotItem.item_name]["ItemCategory"] == "Pickaxe":
+			if Global.item_data["Tools"][itemName]["ItemCategory"] == "Pickaxe":
 				if ableToMine: # check if in range
-					
-					#drop the item after ! -----------------------
 					tileMapNode.removeBlock()
 
 			#check if item is a block
-			if Global.item_data[inventory.currentSlotItem.item_name]["ItemClass"] == "Blocks":
-				if ableToPlace: # check if in range
-					
+			if Global.item_data["Blocks"].has(itemName):
+				if ableToPlace and tileMapNode.return_cell_pos_and_id()[0] == -1: # check if in range
 					#decrease the amount after ! -------------------------
-					var id = Global.item_data[inventory.currentSlotItem.item_name]["ID"]
-					tileMapNode.placeBlock(id)"""
+					var id = Global.item_data["Blocks"][itemName]["ID"]
+					selectedSlot[1] -= 1
+					tileMapNode.placeBlock(id)
+					#remove the block from inventory
+					if selectedSlot[1] == 0:
+						PlayerInventory.remove_item(inventory.slots[inventory.currentSlot])
+						inventory.slots[inventory.currentSlot].removeItem()
+
+					reload_inventory()
 
 func reload_inventory():
 	inventory.initialize_inventory()
@@ -94,7 +100,7 @@ func _input(event):
 		if paused:
 			Global.goto_scene(Global.menuPath)
 	
-	if Input.is_action_just_pressed("pickUp"):
+	if Input.is_action_pressed("pickUp"):
 		if $Areas/PickupRange.itemsInRange.size() > 0:
 			var pickupItem = $Areas/PickupRange.itemsInRange.values()[0]
 			pickupItem.pick_up_item(self)
