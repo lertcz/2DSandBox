@@ -10,7 +10,7 @@ var being_picked_up = false
 
 func _ready():
 	#new inventory system!
-	$Sprite.texture = load("res://Art/Items/" + Global.item_data[item_name]["ItemClass"] + "/" + item_name + ".png")
+	$Sprite.texture = load("res://Art/Items/" + PlayerInventory.getItemCategory(item_name) + "/" + item_name + ".png")
 
 #func set_name_and_texture(name):
 	#$Sprite.texture = load("res://Art/Items/" + Global.item_data[name]["ItemClass"] + "/" + name + ".png")

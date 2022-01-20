@@ -5,6 +5,7 @@ export(Script) var game_save_class
 var save_vars = ["name", "height", "length", "player_pos", "player_inventory", "tilemap_cells"]
 
 onready var tileMap = $TileMap
+onready var inventory = $Player/Gui/PauseGui/Inventory
 
 #save/load https://www.youtube.com/watch?v=ldKFOGRQDzo
 #search files in dir https://godotengine.org/qa/5175/how-to-get-all-the-files-inside-a-folder
@@ -12,6 +13,8 @@ onready var tileMap = $TileMap
 #fix save load and gen
 func _ready():
 	load_world(Global.world)
+	
+	inventory.initInventorySlots()
 
 func verify_save(world_save):
 	for v in save_vars:
@@ -33,6 +36,7 @@ func save_world():
 	#!===================================================
 	#var world_save = load(Global.world)
 	new_save.player_pos = $Player.position
+	new_save.player_inventory = PlayerInventory.inventory
 
 	#var size = $TileMap.get_used_rect()
 	#print(size)

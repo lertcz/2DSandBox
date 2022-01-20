@@ -3,18 +3,37 @@ extends Node
 const SlotClass = preload("res://Scripts/Player/Inventory/Slot.gd")
 const ItemClass = preload("res://Scripts/Player/Inventory/Item.gd")
 
+var inventoryNode
+
 const HOTBAR_SIZE = 5
 const INVENTORY_SLOTS = 15
+
+var currentItem
+var currentItemCategory
 
 var inventory
 #var inventory = {
 #	0: ["CopperPickaxe", 1], # --> itemIndex: [ItemName, item quantity]
 #}
 
+func setCurrentItemAndCategory():
+	if inventory.has(inventoryNode.currentSlot):
+		currentItem = inventory[inventoryNode.currentSlot][0]
+
+		currentItemCategory = getItemCategory(currentItem)
+	else:
+		currentItem = null
+		currentItemCategory = null
+	
+func getItemCategory(currentItem):
+	for category in Global.item_data:
+		if currentItem in Global.item_data[category]:
+			return category
+
 func add_item(itemName, itemQuantity):
 	for item in inventory:
 		if inventory[item][0] == itemName:
-			var stack_size = int(Global.item_data[itemName]["StackSize"])
+			var stack_size = int(Global.item_data[getItemCategory(itemName)][itemName]["StackSize"])
 			var able_to_add = stack_size - inventory[item][1]
 			if able_to_add >= itemQuantity:
 				inventory[item][1] += itemQuantity

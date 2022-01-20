@@ -165,7 +165,7 @@ func generate_world(name: String, max_x: int, max_y: int):
 	
 	for x in max_x:
 		var noise_height = int(noise.get_noise_1d(x) * 4.5) + offset # -10 to get the map lower
-		print(Global.item_data["Blocks"]["grass"]["ID"])
+		#print(Global.item_data["Blocks"]["grass"]["ID"])
 		Map[x][noise_height] = Global.item_data["Blocks"]["grass"]["ID"]
 		#set_cell(x, noise_height, Blocks.blocks.grass) # position, height, mud
 

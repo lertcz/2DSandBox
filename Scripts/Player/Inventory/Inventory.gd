@@ -15,6 +15,9 @@ var itemTexture
 
 
 func _ready():
+	#set global player inv its location
+	PlayerInventory.inventoryNode = self
+	
 	#find player node
 	playerNode = find_parent("Player")
 	
@@ -25,10 +28,13 @@ func _ready():
 	for i in range(len(slots)):
 		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
 		slots[i].slot_index = i
-	
+
+
+func initInventorySlots():
+	PlayerInventory.setCurrentItemAndCategory()
 	initialize_inventory()
 	moveSelector()
-	holdingItemTexture(slots[0].item)
+	holdingItemTexture(slots[0].item) # set a texture of 1st item if item exist
 
 func initialize_inventory():
 	var slots = inventory_hotbar.get_children() + inventory_slots.get_children()
@@ -118,6 +124,8 @@ func _input(event):
 			currentSlot = hotbarSlotCount
 		else:
 			currentSlot -= 1
+		
+		PlayerInventory.setCurrentItemAndCategory()
 		moveSelector()
 
 	elif Input.is_action_just_released("wDOWN"):
@@ -126,4 +134,6 @@ func _input(event):
 			currentSlot = 0
 		else:
 			currentSlot += 1
+		
+		PlayerInventory.setCurrentItemAndCategory()
 		moveSelector()

@@ -28,6 +28,8 @@ func dropItem(tile: Vector2, id: int):
 	var item = itemDrop.instance()
 	item.position = selector.mouse_pos * 8
 	item.item_name = Global.blockIdDrop[id]
+	print(item)
+	print(item.item_name)
 	add_child(item)
 
 func placeBlock(blockID):

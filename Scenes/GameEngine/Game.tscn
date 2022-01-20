@@ -26,5 +26,3 @@ script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 476, 78 )
-
-[node name="Drops" type="Node2D" parent="."]

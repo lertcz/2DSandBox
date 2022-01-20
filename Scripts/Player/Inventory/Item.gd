@@ -2,6 +2,7 @@ extends Node2D
 
 var item_name
 var item_quantity
+var item_category
 
 func asas_ready():
 	var randint = randi() % 6
@@ -32,9 +33,10 @@ func asas_ready():
 func set_item(itemName, itemQuantity):
 	item_name = itemName
 	item_quantity = itemQuantity
-	$Texture.texture = load("res://Art/Items/" + Global.item_data[item_name]["ItemClass"] + "/" + item_name + ".png")
+	
+	$Texture.texture = load("res://Art/Items/" + PlayerInventory.getItemCategory(item_name) + "/" + item_name + ".png")
 
-	var stack_size = int(Global.item_data[item_name]["StackSize"])
+	var stack_size = int(Global.item_data[PlayerInventory.getItemCategory(item_name)][item_name]["StackSize"])
 	if stack_size == 1:
 		$Count.visible = false
 	else:

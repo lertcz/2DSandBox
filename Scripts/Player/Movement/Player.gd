@@ -21,6 +21,8 @@ var paused = false
 var ableToMine = false
 var ableToPlace = false
 
+onready var selector = tileMapNode.find_node("selector")
+
 func _physics_process(delta: float) -> void:
 	# walking
 	var walk = (Input.get_action_strength("right") - Input.get_action_strength("left")) * MOVE_SPEED
@@ -59,30 +61,6 @@ func _physics_process(delta: float) -> void:
 			velocity.x *= FRICTION_AIR
 	pullRate += GRAVITY
 
-	#using items
-	if PlayerInventory.inventory.has(inventory.currentSlot): #check if u hold an item
-		var selectedSlot = PlayerInventory.inventory[inventory.currentSlot]
-		if(Input.is_action_pressed("LMB")): # check for lmb
-			var itemName = selectedSlot[0]
-			#check if item is pickaxe
-			if Global.item_data["Tools"][itemName]["ItemCategory"] == "Pickaxe":
-				if ableToMine: # check if in range
-					tileMapNode.removeBlock()
-
-			#check if item is a block
-			if Global.item_data["Blocks"].has(itemName):
-				if ableToPlace and tileMapNode.return_cell_pos_and_id()[0] == -1: # check if in range
-					#decrease the amount after ! -------------------------
-					var id = Global.item_data["Blocks"][itemName]["ID"]
-					selectedSlot[1] -= 1
-					tileMapNode.placeBlock(id)
-					#remove the block from inventory
-					if selectedSlot[1] == 0:
-						PlayerInventory.remove_item(inventory.slots[inventory.currentSlot])
-						inventory.slots[inventory.currentSlot].removeItem()
-
-					reload_inventory()
-
 func reload_inventory():
 	inventory.initialize_inventory()
 
@@ -108,3 +86,28 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("test"):
 		print(PlayerInventory.inventory)
+
+	if(Input.is_action_pressed("LMB")): # check for lmb
+		#using items
+		if PlayerInventory.inventory.has(inventory.currentSlot): #check if u hold an item
+			var selectedSlot = PlayerInventory.inventory[inventory.currentSlot]
+			var itemName = selectedSlot[0]
+			#check if item is pickaxe
+			if PlayerInventory.currentItemCategory == "Tools":
+				if Global.item_data["Tools"][itemName]["ItemCategory"] == "Pickaxe":
+					if ableToMine: # check if in range
+						tileMapNode.removeBlock()
+
+			#check if item is a block
+			if Global.item_data["Blocks"].has(itemName):
+				if ableToPlace and tileMapNode.return_cell_pos_and_id()[0] == -1: # check if in range
+					#decrease the amount after ! -------------------------
+					var id = Global.item_data["Blocks"][itemName]["ID"]
+					selectedSlot[1] -= 1
+					tileMapNode.placeBlock(id)
+					#remove the block from inventory
+					if selectedSlot[1] == 0:
+						PlayerInventory.remove_item(inventory.slots[inventory.currentSlot])
+						inventory.slots[inventory.currentSlot].removeItem()
+
+					reload_inventory()
