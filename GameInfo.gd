@@ -20,13 +20,13 @@ func setLables():
 	fps.text = ("FPS: " + str(Engine.get_frames_per_second()))
 	position.text = ("Position: " + str(Vector2(round(player.position.x / 8), round(player.position.y / 8))))
 	selectedCell.text = ("Selected cell: " + str(tileMap.selector.mouse_pos)) 
-	#selectedItem.text = ("Selected item: " + selected) #  + str(inventory.currentSlot) 
-	#holdingItem.text = ("Holding item: " + holding)
+	selectedItem.text = ("Selected item: " + selected) 
+	holdingItem.text = ("Holding item: " + holding)
 
 func _physics_process(delta):
 	
-	if false:#PlayerInventory.:
-		selected = inventory.currentSlotItem.item_name
+	if PlayerInventory.currentItem:
+		selected = PlayerInventory.currentItem
 	else:
 		selected = "nothing"
 	

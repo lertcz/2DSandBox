@@ -10,7 +10,6 @@ onready var inventory = $Player/Gui/PauseGui/Inventory
 #save/load https://www.youtube.com/watch?v=ldKFOGRQDzo
 #search files in dir https://godotengine.org/qa/5175/how-to-get-all-the-files-inside-a-folder
 
-#fix save load and gen
 func _ready():
 	load_world(Global.world)
 	
@@ -73,7 +72,3 @@ func load_world(path):
 				$TileMap.set_cell(x, y, world_save.tilemap_cells[x][y])
 
 	return true
-
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("save"):
-		save_world()

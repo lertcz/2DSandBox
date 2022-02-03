@@ -28,8 +28,6 @@ func dropItem(tile: Vector2, id: int):
 	var item = itemDrop.instance()
 	item.position = selector.mouse_pos * 8
 	item.item_name = Global.blockIdDrop[id]
-	print(item)
-	print(item.item_name)
 	add_child(item)
 
 func placeBlock(blockID):
@@ -39,7 +37,7 @@ func placeBlock(blockID):
 
 func return_cell_pos_and_id():
 	var tile: Vector2 = world_to_map(selector.mouse_pos * 8)
-	return [get_cellv(tile)]
+	return get_cellv(tile)
 
 #print(selector.mouse_pos)
 #print(selector.mouse_pos * 8)

@@ -63,29 +63,25 @@ func _physics_process(delta: float) -> void:
 
 func reload_inventory():
 	inventory.initialize_inventory()
+	
+""" Implement later! use blocks in hand
+func itemSelection():
+	if inventory.holding_item:
+		return [inventory.holding_item.item_name, inventory.holding_item.item_quantity]
+	return PlayerInventory.inventory[inventory.currentSlot]"""
 
 func _input(event):
 	#jumping
 	if Input.is_action_just_pressed("up"):
 		if is_on_floor():
 			pullRate = -JUMP_FORCE
-
-	if Input.is_action_just_pressed("ui_cancel"):
-		paused = !paused
-		$Gui/PauseGui/Inventory/PauseInventory.visible = paused
-
-	if Input.is_action_just_pressed("ui_accept"):
-		if paused:
-			Global.goto_scene(Global.menuPath)
 	
+	#change it to auto pickup!
 	if Input.is_action_pressed("pickUp"):
 		if $Areas/PickupRange.itemsInRange.size() > 0:
 			var pickupItem = $Areas/PickupRange.itemsInRange.values()[0]
 			pickupItem.pick_up_item(self)
 			$Areas/PickupRange.itemsInRange.erase(pickupItem)
-	
-	if Input.is_action_just_pressed("test"):
-		print(PlayerInventory.inventory)
 
 	if(Input.is_action_pressed("LMB")): # check for lmb
 		#using items
@@ -100,14 +96,8 @@ func _input(event):
 
 			#check if item is a block
 			if Global.item_data["Blocks"].has(itemName):
-				if ableToPlace and tileMapNode.return_cell_pos_and_id()[0] == -1: # check if in range
-					#decrease the amount after ! -------------------------
+				if ableToPlace and tileMapNode.return_cell_pos_and_id() == -1: # check if in range
 					var id = Global.item_data["Blocks"][itemName]["ID"]
-					selectedSlot[1] -= 1
+					#change to remove one
+					inventory.remove_one(selectedSlot)
 					tileMapNode.placeBlock(id)
-					#remove the block from inventory
-					if selectedSlot[1] == 0:
-						PlayerInventory.remove_item(inventory.slots[inventory.currentSlot])
-						inventory.slots[inventory.currentSlot].removeItem()
-
-					reload_inventory()

@@ -24,7 +24,8 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
 			
 			var distance = global_position.distance_to(player.global_position)
-			if distance < 4:
+
+			if distance < 5:
 				#TODO fix picking up items if inv is full
 				PlayerInventory.add_item(item_name, 1)
 				queue_free()
@@ -35,3 +36,4 @@ func _physics_process(delta):
 func pick_up_item(body):
 	player = body
 	being_picked_up = true
+	$Collision.disabled = true
